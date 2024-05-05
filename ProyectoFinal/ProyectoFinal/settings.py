@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # SELF APPS
     "apps.restaurants",
     "apps.users",
+    "apps.products",
     # LIBS APPS
     "rest_framework",
     "corsheaders",
