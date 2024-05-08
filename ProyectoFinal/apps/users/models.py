@@ -3,10 +3,15 @@ from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
-class User(models.Model):
+class User(AbstractUser):
+    REQUIRED_FIELDS = ["first_name", "second_name", "email"]
     first_name = models.CharField(max_length=100)
     second_name = models.CharField(max_length=100)
     email = models.EmailField()
+
+    def save(self, *args, **kwargs) -> None:
+        self.username = self.username
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.first_name} {self.second_name}"
@@ -28,7 +33,7 @@ class Waiter_Shift(models.Model):
     restaurant = models.ForeignKey("restaurants.Restaurant", on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return f"{self.waiter.first_name} {self.waiter.second_name} - {self.shift.date}"
+        return f"{self.waiter.user.first_name} {self.waiter.user.second_name} - {self.start_date} - {self.end_date}"
 
 
 class Tip_Waiter(models.Model):

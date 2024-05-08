@@ -19,22 +19,19 @@ class RestaurantAdmin(admin.ModelAdmin):
 
 
 class TableAdmin(admin.ModelAdmin):
-    list_display = ["number", "person_capacity"]
+    list_display = ["id", "number", "person_capacity"]
 
 
 class Tables_RestaurantAdmin(admin.ModelAdmin):
-    list_display = ["table", "restaurant"]
+    list_display = ["id", "table", "restaurant"]
 
 
 class BillAdmin(admin.ModelAdmin):
-    list_display = ["order", "cost", "tip_percentage", "final_cost"]
+    list_display = ["id", "order", "cost", "tip_percentage", "final_cost"]
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ["waiter", "table_restaurant"]
-
-
-
+    list_display = ["id", "waiter", "table_restaurant"]
 
 
 admin.site.register(Restaurant, RestaurantAdmin)
@@ -42,4 +39,3 @@ admin.site.register(Table, TableAdmin)
 admin.site.register(Tables_Restaurant, Tables_RestaurantAdmin)
 admin.site.register(Bill, BillAdmin)
 admin.site.register(Order, OrderAdmin)
-

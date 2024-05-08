@@ -31,7 +31,7 @@ class Bill(models.Model):
     order = models.ForeignKey("Order", on_delete=models.DO_NOTHING)
     cost = models.FloatField()
     tip_percentage = models.FloatField()
-    final_cost = models.FloatField()
+    final_cost = models.FloatField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.order} - {self.cost}"
@@ -44,5 +44,5 @@ class Order(models.Model):
     )
 
     def __str__(self):
-        return f"{self.waiter.first_name} {self.waiter.second_name} - {self.date}"
+        return f"{self.waiter.user.first_name} {self.waiter.user.second_name} - {self.table_restaurant.table.number} {self.table_restaurant.restaurant.name}"
 

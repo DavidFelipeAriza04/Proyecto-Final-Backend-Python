@@ -7,19 +7,19 @@ from .models import User, Waiter, Waiter_Shift, Tip_Waiter
 
 # Register your models here.
 class UserAdmin(admin.ModelAdmin):
-    list_display = ["id","first_name", "second_name", "email"]
+    list_display = ["id", "first_name", "second_name", "email"]
 
 
 class WaiterAdmin(admin.ModelAdmin):
-    list_display = ["user", "charge"]
+    list_display = ["id", "user", "charge"]
 
 
 class Waiter_ShiftAdmin(admin.ModelAdmin):
-    list_display = ["waiter", "start_date", "end_date", "restaurant"]
+    list_display = ["id", "waiter", "start_date", "end_date", "restaurant"]
 
 
 class Tip_WaiterAdmin(admin.ModelAdmin):
-    list_display = ["bill", "waiter", "paid"]
+    list_display = ["id", "bill", "waiter", "paid"]
 
 
 admin.site.register(User, UserAdmin)
