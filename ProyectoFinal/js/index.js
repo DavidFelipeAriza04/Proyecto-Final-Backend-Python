@@ -97,7 +97,7 @@ function AnadirFilaTabla(restaurant) {
                 <th scope="row">${restaurant.id}</th>
                 <td>${restaurant.name}</td>
                 <td>${restaurant.address}</td>
-                <td>${restaurant.owner.first_name}  ${restaurant.owner.second_name}</td>
+                <td>${restaurant.owner.first_name}  ${restaurant.owner.last_name}</td>
                 <td><button type="button" class="btn btn-outline-danger" onclick="DeleteRestaurant(${restaurant.id})">Eliminar</button></td>
             </tr>
         `

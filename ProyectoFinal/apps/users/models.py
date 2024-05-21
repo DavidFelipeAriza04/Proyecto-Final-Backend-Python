@@ -1,29 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
 
 # Create your models here.
-class User(AbstractUser):
-    REQUIRED_FIELDS = ["first_name", "second_name", "email"]
-    first_name = models.CharField(max_length=100)
-    second_name = models.CharField(max_length=100)
-    email = models.EmailField()
-
-    def save(self, *args, **kwargs) -> None:
-        self.username = self.username
-        return super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f"{self.first_name} {self.second_name}"
-
-
 class Waiter(models.Model):
-    user = models.ForeignKey("User", on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     OPCIONES_CHOICES = [("MG", "MANAGER"), ("AT", "ADMINTABLES"), ("EX", "EXTRA")]
     charge = models.CharField(max_length=2, choices=OPCIONES_CHOICES, default="EX")
 
     def __str__(self):
-        return f"{self.user.first_name} {self.user.second_name} - {self.get_charge_display()}"
+        return f"{self.user.first_name} {self.user.last_name} - {self.get_charge_display()}"
 
 
 class Waiter_Shift(models.Model):
@@ -33,7 +20,7 @@ class Waiter_Shift(models.Model):
     restaurant = models.ForeignKey("restaurants.Restaurant", on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return f"{self.waiter.user.first_name} {self.waiter.user.second_name} - {self.start_date} - {self.end_date}"
+        return f"{self.waiter.user.first_name} {self.waiter.user.last_name} - {self.start_date} - {self.end_date}"
 
 
 class Tip_Waiter(models.Model):
@@ -42,4 +29,4 @@ class Tip_Waiter(models.Model):
     paid = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.waiter.first_name} {self.waiter.second_name} - {self.date}"
+        return f"{self.waiter.first_name} {self.waiter.last_name} - {self.date}"

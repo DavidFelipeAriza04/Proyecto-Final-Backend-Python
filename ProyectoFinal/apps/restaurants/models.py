@@ -1,11 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
-    owner = models.ForeignKey("users.User", on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.name
@@ -44,5 +45,5 @@ class Order(models.Model):
     )
 
     def __str__(self):
-        return f"{self.waiter.user.first_name} {self.waiter.user.second_name} - {self.table_restaurant.table.number} {self.table_restaurant.restaurant.name}"
+        return f"{self.waiter.user.first_name} {self.waiter.user.last_name} - {self.table_restaurant.table.number} {self.table_restaurant.restaurant.name}"
 
