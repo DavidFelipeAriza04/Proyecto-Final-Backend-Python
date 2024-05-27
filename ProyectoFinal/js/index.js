@@ -9,7 +9,7 @@ const getPersonas = async () => {
     response_owners = await fetch('http://127.0.0.1:8000/users/users/')
     data_owners = await response_owners.json()
     owners = document.getElementById('InputOwner')
-    data_owners.forEach(owner => owners.innerHTML += `<option value="${owner.id}">${owner.first_name} ${owner.second_name}</option>`)
+    data_owners.forEach(owner => owners.innerHTML += `<option value="${owner.id}">${owner.first_name} ${owner.last_name}</option>`)
     console.log(data)
 }
 

@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import User, Waiter
+from .models import Waiter
+from django.contrib.auth.models import User
 
 class UsersSerializerModel(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=False)
