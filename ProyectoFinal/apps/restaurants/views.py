@@ -55,7 +55,7 @@ class TablesViewSet(ModelViewSet):
 
     def filter_queryset(self, queryset):
         user = self.request.user
-        waiter = Waiter.objects.filter(user=user).first()
+        waiter = Waiter.objects.get(user=user)
         now = datetime.now()
         waiter_shifts = Waiter_Shift.objects.filter(
             Q(waiter=waiter) & Q(start_date__lte=now) & Q(end_date__gte=now)

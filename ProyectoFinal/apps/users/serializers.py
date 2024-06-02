@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Waiter
+from .models import Waiter, Waiter_Shift, Tip_Waiter
 from django.contrib.auth.models import User
 
 class UsersSerializerModel(serializers.ModelSerializer):
@@ -19,4 +19,14 @@ class WaitersSerializerModel(serializers.ModelSerializer):
     # user = UsersSerializerModel()
     class Meta:
         model = Waiter
+        fields = "__all__"
+
+class WaiterShiftSerializerModel(serializers.ModelSerializer):
+    class Meta:
+        model = Waiter_Shift
+        fields = "id","start_date", "end_date", "restaurant"
+
+class Tip_WaiterSerializerModel(serializers.ModelSerializer):
+    class Meta:
+        model = Tip_Waiter
         fields = "__all__"

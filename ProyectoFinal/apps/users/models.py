@@ -29,4 +29,4 @@ class Tip_Waiter(models.Model):
     paid = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.waiter.first_name} {self.waiter.last_name} - {self.date}"
+        return f"{self.waiter.user.first_name} {self.waiter.user.last_name} - {self.paid}"

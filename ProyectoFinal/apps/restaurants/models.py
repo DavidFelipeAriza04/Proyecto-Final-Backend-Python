@@ -35,7 +35,7 @@ class Bill(models.Model):
     final_cost = models.FloatField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.order} - {self.cost}"
+        return f"{self.order} - {self.final_cost}"
 
 
 class Order(models.Model):

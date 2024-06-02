@@ -2,7 +2,7 @@
 from django.contrib import admin
 
 # SELF IMPORTS
-from .models import User, Waiter, Waiter_Shift, Tip_Waiter
+from .models import Waiter, Waiter_Shift, Tip_Waiter
 
 class WaiterAdmin(admin.ModelAdmin):
     list_display = ["id", "user", "charge"]
