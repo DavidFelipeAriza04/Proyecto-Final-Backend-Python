@@ -17,8 +17,6 @@
 <body style="padding:20px; display: flex; flex-direction: column; align-items: center;">
     <div style="display: flex; align-items: center; flex-direction: row; margin: 20px;">
         <h1 id="Titulo">RESTAURANTS</h1>
-        <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-            style="position: absolute; left: 90%;" class="btn btn-outline-success">Add User</button>
     </div>
     <table id="tabla_personas" class="table table-bordered border-primary">
         <thead>
@@ -45,41 +43,12 @@
         <button type="button" class="btn btn-outline-success" style="width: 50%;"
             onclick="AddRestaurant()">Agregar</button>
     </div>
+    <button type="button" class="btn btn-outline-success" style="width: 50%;" onclick="Ordenes()">Ordenes
+    </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add User</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <form action=""><label for="InputFirstName" class="form-label form-control-sm"
-                                style="margin-bottom: -3px;">First Name</label>
-                            <input type="text" class="form-control form-control-sm" id="InputFirstName">
-                            <label for="InputSecondName" class="form-label form-control-sm"
-                                style="margin-bottom: -3px;">Second Name</label>
-                            <input type="text" class="form-control form-control-sm" id="InputSecondName">
-                            <label for="InputEmail" class="form-label form-control-sm"
-                                style="margin-bottom: -3px;">Email</label>
-                            <input type="email" required class="form-control form-control-sm" id="InputEmail">
-                        </form>
-
-
-                    </div>
-                    <button type="button" class="btn btn-outline-success" style="width: 50%; justify-self: center;"
-                        onclick="AddUser()">Agregar</button>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+</body>
+<button type="button" class="btn btn-outline-success" style="width: 50%;" onclick="CerrarSesion()">Cerrar
+    Sesion</button>
 </body>
 
 </html>

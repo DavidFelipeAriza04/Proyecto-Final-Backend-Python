@@ -65,7 +65,6 @@ class WaitersViewSet(ModelViewSet):
     def orders(self, request, pk=None):
         user = self.request.user
         waiter = self.get_object()
-
         if waiter.user != user:
             return Response({"message": "You are not the waiter"}, status=403)
         orders = Order.objects.filter(waiter=waiter)
@@ -74,14 +73,13 @@ class WaitersViewSet(ModelViewSet):
             # Lista para almacenar las órdenes activas
             active_orders = []
             for order in orders:
-                serializer = OrderSerializerModel(order)
                 # Verificar si la orden no tiene una factura asociada
                 if not Bill.objects.filter(Q(order=order)).exists():
-                    active_orders.append(serializer.data)
+                    active_orders.append(order)
                 # Verificar si la orden esta asociada a una cuenta pero no tiene un costo final
                 elif Bill.objects.filter(Q(order=order) & Q(final_cost=None)).exists():
-                    active_orders.append(serializer.data)
-            return Response(active_orders)
+                    active_orders.append(order)
+            serializer = OrderSerializerModel(active_orders, many=True)
         return Response(serializer.data)
 
     @action(methods=["get"], detail=True)

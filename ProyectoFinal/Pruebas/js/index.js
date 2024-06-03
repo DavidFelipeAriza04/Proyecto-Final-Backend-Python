@@ -10,7 +10,6 @@ const getPersonas = async () => {
     data_owners = await response_owners.json()
     owners = document.getElementById('InputOwner')
     data_owners.forEach(owner => owners.innerHTML += `<option value="${owner.id}">${owner.first_name} ${owner.last_name}</option>`)
-    console.log(data)
 }
 
 function ShowAddRestaurant() {
@@ -102,6 +101,14 @@ function AnadirFilaTabla(restaurant) {
             </tr>
         `
 }
+function Ordenes(){
+    window.location.replace('ordenes.html');
+}
+function CerrarSesion(){
+    localStorage.removeItem('token');
+    window.location.replace('login.html');
+}
+
 window.addEventListener('load', () => {
     getPersonas();
 });

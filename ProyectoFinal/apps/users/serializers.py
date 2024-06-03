@@ -16,7 +16,7 @@ class UsersSerializerModel(serializers.ModelSerializer):
         return user
 
 class WaitersSerializerModel(serializers.ModelSerializer):
-    # user = UsersSerializerModel()
+    user = UsersSerializerModel()
     class Meta:
         model = Waiter
         fields = "__all__"

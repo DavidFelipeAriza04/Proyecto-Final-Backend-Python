@@ -8,6 +8,7 @@ from django.db.models import Q
 
 # SELF MODULES
 from .serializers import (
+    OrderDetailSerializerModel,
     RestaurantDetailSerializerModel,
     RestaurantSerializerModel,
     TableSerializerModel,
@@ -55,7 +56,10 @@ class TablesViewSet(ModelViewSet):
 
     def filter_queryset(self, queryset):
         user = self.request.user
-        waiter = Waiter.objects.get(user=user)
+        try:
+            waiter = Waiter.objects.get(user=user)
+        except Waiter.DoesNotExist:
+            return queryset.none()
         now = datetime.now()
         waiter_shifts = Waiter_Shift.objects.filter(
             Q(waiter=waiter) & Q(start_date__lte=now) & Q(end_date__gte=now)
@@ -86,6 +90,11 @@ class OrdersViewSet(ModelViewSet):
     serializer_class = OrderSerializerModel
     permission_classes = [IsAuthenticated]
 
+    def get_serializer_class(self):
+        if self.request.query_params.get("detail", False):
+            return OrderDetailSerializerModel
+        return super().get_serializer_class()
+    
     def get_permissions(self):
         if self.action == "destroy":
             return super().get_permissions() + [IsManagerOrAdmintables()]

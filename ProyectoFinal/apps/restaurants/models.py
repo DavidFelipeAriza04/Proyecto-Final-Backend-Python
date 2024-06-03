@@ -32,7 +32,7 @@ class Bill(models.Model):
     order = models.ForeignKey("Order", on_delete=models.DO_NOTHING)
     cost = models.FloatField()
     tip_percentage = models.FloatField()
-    final_cost = models.FloatField(blank=True, null=True)
+    final_cost = models.FloatField(default=None,blank=True, null=True)
 
     def __str__(self):
         return f"{self.order} - {self.final_cost}"

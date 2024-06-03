@@ -3,6 +3,7 @@ from rest_framework import serializers
 
 # SELF MODULES
 from apps.users.models import User
+from apps.users.serializers import WaitersSerializerModel
 from .models import Restaurant, Table, Order, Bill
 
 
@@ -11,6 +12,11 @@ class OwnerSerializerModel(serializers.ModelSerializer):
         model = User
         fields = "__all__"
 
+class OrderDetailSerializerModel(serializers.ModelSerializer):
+    waiter = WaitersSerializerModel()
+    class Meta:
+        model = Order
+        fields = "__all__"
 
 class RestaurantSerializerModel(serializers.ModelSerializer):
     class Meta:
