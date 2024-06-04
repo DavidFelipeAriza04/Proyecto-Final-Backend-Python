@@ -4,7 +4,7 @@ from rest_framework import serializers
 # SELF MODULES
 from apps.users.models import User
 from apps.users.serializers import WaitersSerializerModel
-from .models import Restaurant, Table, Order, Bill
+from .models import Restaurant, Table, Order, Bill, Tables_Restaurant
 
 
 class OwnerSerializerModel(serializers.ModelSerializer):
@@ -47,4 +47,9 @@ class OrderSerializerModel(serializers.ModelSerializer):
 class BillSerializerModel(serializers.ModelSerializer):
     class Meta:
         model = Bill
+        fields = "__all__"
+
+class TablesRestaurantSerializerModel(serializers.ModelSerializer):
+    class Meta:
+        model = Tables_Restaurant
         fields = "__all__"

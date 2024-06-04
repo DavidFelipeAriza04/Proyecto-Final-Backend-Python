@@ -14,6 +14,7 @@ from .serializers import (
     UsersSerializerModel,
     WaitersSerializerModel,
     WaiterShiftSerializerModel,
+    Tip_WaiterSerializerModel
 )
 
 
@@ -63,7 +64,6 @@ class WaitersViewSet(ModelViewSet):
 
     @action(methods=["get"], detail=True)
     def orders(self, request, pk=None):
-        user = self.request.user
         waiter = self.get_object()
         orders = Order.objects.filter(waiter=waiter)
         serializer = OrderSerializerModel(orders, many=True)
@@ -97,3 +97,7 @@ class WaitersViewSet(ModelViewSet):
             "Current_tips": current_tips,
         }
         return Response(tips)
+
+class TipWaiterViewSet(ModelViewSet):
+    queryset = Tip_Waiter.objects.all()
+    serializer_class = Tip_WaiterSerializerModel

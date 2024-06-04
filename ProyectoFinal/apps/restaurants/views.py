@@ -14,9 +14,10 @@ from .serializers import (
     TableSerializerModel,
     OrderSerializerModel,
     BillSerializerModel,
+    TablesRestaurantSerializerModel
 )
 
-from .models import Restaurant, Table, Order, Bill
+from .models import Restaurant, Table, Order, Bill, Tables_Restaurant
 
 from apps.users.models import Waiter, Waiter_Shift
 
@@ -142,3 +143,7 @@ class BillsViewSet(ModelViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+class TablesRestaurantViewSet(ModelViewSet):
+    queryset = Tables_Restaurant.objects.all()
+    serializer_class = TablesRestaurantSerializerModel
