@@ -65,8 +65,6 @@ class WaitersViewSet(ModelViewSet):
     def orders(self, request, pk=None):
         user = self.request.user
         waiter = self.get_object()
-        if waiter.user != user:
-            return Response({"message": "You are not the waiter"}, status=403)
         orders = Order.objects.filter(waiter=waiter)
         serializer = OrderSerializerModel(orders, many=True)
         if self.request.query_params.get("active") == "1":
