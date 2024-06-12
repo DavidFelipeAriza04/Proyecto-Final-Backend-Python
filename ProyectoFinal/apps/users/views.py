@@ -84,7 +84,6 @@ class WaitersViewSet(ModelViewSet):
     def get_tips(self, request, pk=None):
         waiter = self.get_object()
         tip_waiter = Tip_Waiter.objects.filter(bill__order__waiter=waiter)
-        print(tip_waiter)
         tips_payed = 0
         current_tips = 0
         for tip in tip_waiter:
