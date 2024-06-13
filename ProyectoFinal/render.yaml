@@ -1,0 +1,22 @@
+databases:
+  - name: ProyectoFinaldb
+    plan: free
+    databaseName: ProyectoFinal
+    user: ProyectoFinal
+
+services:
+  - type: web
+    plan: free
+    name: ProyectoFinal
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "python -m gunicorn ProyectoFinal.asgi:application -k uvicorn.workers.UvicornWorker"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ProyectoFinaldb
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
